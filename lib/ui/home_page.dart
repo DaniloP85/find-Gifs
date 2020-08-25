@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:transparent_image/transparent_image.dart';
 import 'package:buscadorgifs/ui/gif_page.dart';
+import 'package:share/share.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,16 +17,18 @@ class _HomePageState extends State<HomePage> {
   int _offSet = 0;
   String _path = "https://api.giphy.com/v1/gifs";
   String _apiKey = "RTkOASZFZKGbOML5pwiTu9Epm6C05Ir0";
+  int _limit = 20;
+  String _rating = "g";
 
   Future<Map> _getGifs() async {
     http.Response response;
 
-    if (_search == null || _search.length == 0) {
+    if (_search == null || _search.isEmpty) {
       response =
-          await http.get("$_path/trending?api_key=$_apiKey&limit=20&rating=g");
+          await http.get("$_path/trending?api_key=$_apiKey&limit=$_limit&rating=$_rating");
     } else {
       response = await http.get(
-          "$_path/search?api_key=$_apiKey&q=$_search&limit=19&offset=$_offSet&rating=g&lang=pt");
+          "$_path/search?api_key=$_apiKey&q=$_search&limit=$_limit&offset=$_offSet&rating=$_rating&lang=pt");
     }
     return json.decode(response.body);
   }
@@ -111,37 +114,27 @@ class _HomePageState extends State<HomePage> {
             crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
         itemCount: _getCount(snapshot.data["data"]),
         itemBuilder: (context, index) {
-          if (_search == null || index < snapshot.data["data"].length) {
-            return GestureDetector(
-              child: Image.network(
-                  snapshot.data["data"][index]["images"]["fixed_height"]["url"],
-                  height: 300.0,
-                  fit: BoxFit.cover),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(
-                        builder: (context) => GifPage(snapshot.data["data"][index]["images"]["fixed_height"]["url"], snapshot.data["data"][index]["title"])));
-              },
-            );
-          } else {
-            return GestureDetector(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.add, color: Colors.white, size: 70.0),
-                  Text(
-                    "Carregar mais...",
-                    style: TextStyle(color: Colors.white, fontSize: 22.0),
-                  )
-                ],
-              ),
-              onTap: () {
-                setState(() {
-                  _offSet += 19;
-                });
-              },
-            );
-          }
+          return GestureDetector(
+            child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: snapshot.data["data"][index]["images"]["fixed_height"]["url"],
+              height: 300.0,
+              fit: BoxFit.cover,
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => GifPage(
+                          snapshot.data["data"][index]["images"]["fixed_height"]
+                              ["url"],
+                          snapshot.data["data"][index]["title"])));
+            },
+            onLongPress: () {
+              Share.share(snapshot.data["data"][index]["images"]["fixed_height"]
+                  ["url"]);
+            },
+          );
         });
   }
 }
