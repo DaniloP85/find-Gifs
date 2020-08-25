@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:buscadorgifs/ui/gif_page.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -18,12 +20,12 @@ class _HomePageState extends State<HomePage> {
   Future<Map> _getGifs() async {
     http.Response response;
 
-    if (_search == null) {
+    if (_search == null || _search.length == 0) {
       response =
           await http.get("$_path/trending?api_key=$_apiKey&limit=20&rating=g");
     } else {
       response = await http.get(
-          "$_path/search?api_key=$_apiKey&q=$_search&limit=19&offset=$_offSet&rating=g&lang=en");
+          "$_path/search?api_key=$_apiKey&q=$_search&limit=19&offset=$_offSet&rating=g&lang=pt");
     }
     return json.decode(response.body);
   }
@@ -115,6 +117,11 @@ class _HomePageState extends State<HomePage> {
                   snapshot.data["data"][index]["images"]["fixed_height"]["url"],
                   height: 300.0,
                   fit: BoxFit.cover),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(
+                        builder: (context) => GifPage(snapshot.data["data"][index]["images"]["fixed_height"]["url"], snapshot.data["data"][index]["title"])));
+              },
             );
           } else {
             return GestureDetector(
