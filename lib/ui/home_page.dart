@@ -99,20 +99,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  int _getCount(List data) {
-    if (_search == null) {
-      return data.length;
-    } else {
-      return data.length + 1;
-    }
-  }
-
   Widget _createGifTable(BuildContext context, AsyncSnapshot snapshot) {
     return GridView.builder(
         padding: EdgeInsets.all(10.0),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
-        itemCount: _getCount(snapshot.data["data"]),
+        itemCount: 20,
         itemBuilder: (context, index) {
           return GestureDetector(
             child: FadeInImage.memoryNetwork(
