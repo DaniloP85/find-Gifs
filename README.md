@@ -11,7 +11,7 @@ Studying Flutter, following the [udemy course](https://www.udemy.com/course/curs
 | ![.](readme/iphone.13.mini.png) | ![.](readme/pixel.3.png) | ![.](readme/chrome.png)
 
 ## Getting Started
-1. Clone project `git@github.com:DaniloP85/find-Gifs.git` or  `https://github.com/DaniloP85/find-Gifs`
+1. Clone project ```git@github.com:DaniloP85/find-Gifs.git``` or  ```https://github.com/DaniloP85/find-Gifs```
 2. Open the project in Android Studio or VSCode
 3. To build for the internet, read the [documentation](https://docs.flutter.dev/get-started/web), if you have a problem with CORS, because of the giphy log, perform the following steps:
     
@@ -31,9 +31,9 @@ Studying Flutter, following the [udemy course](https://www.udemy.com/course/curs
                                 └─── chrome.dart
     ```
 
-    3.2 the file `flutter_tools.stamp` must be removed
+    3.2 the file ```flutter_tools.stamp``` must be removed
 
-    3.3 In `chrome.dart` look for `'--disable-extensions',` add a line after this, on this new line add `'--disable-web-security',`
+    3.3 In `chrome.dart` look for ```'--disable-extensions',``` add a line after this, on this new line add ```'--disable-web-security',```
 
 
 ## Authors
