@@ -1,16 +1,28 @@
-# buscadorgifs
+# find-Gifs
 
-A new Flutter application.
+## Description
+
+Studying Flutter, following the [udemy course](https://www.udemy.com/course/curso-completo-flutter-app-android-ios/)
+
+## Preview
+
+| Iphone 13 Mini | Pixel 3 | Chrome |
+| ---- | ---- |  ---- |
+| ![.](readme/iphone.13.mini.png) | ![.](readme/pixel.3.png) | ![.](readme/chrome.png)
 
 ## Getting Started
+1. Clone project `git@github.com:DaniloP85/find-Gifs.git` or  `https://github.com/DaniloP85/find-Gifs`
+2. Open the project in Android Studio or VSCode
+3. [build for web](https://docs.flutter.dev/get-started/web)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Authors
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+[Danilo Santos](https://www.linkedin.com/in/danilopsnts/)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contributing
+
+Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+## License
+
+This project is licensed under the MT License - see the [LICENSE](LICENSE.md) file for details
