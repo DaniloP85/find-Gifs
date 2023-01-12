@@ -33,7 +33,7 @@ Studying Flutter, following the [udemy course](https://www.udemy.com/course/curs
 
     3.2 the file `flutter_tools.stamp` must be removed
 
-    3.3 In `chrome.dart` look for `'--disable-extensions',` add a line after this one, on this new line add `'--disable-web-security',`
+    3.3 In `chrome.dart` look for `'--disable-extensions',` add a line after this, on this new line add `'--disable-web-security',`
 
 
 ## Authors
